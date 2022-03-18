@@ -44,17 +44,17 @@ class AuthController extends Controller
 
 
        if(!Auth::attempt($credentials)){
-           return response()->json([
+           return response([
                'message' => "Unprocessable Entity"
            ], 422);
        }
 
        $accessToken = Auth::user()->createToken('authToken')->accessToken;
 
-       return response()->json([
+       return response([
            'user' => Auth::user(),
            'access_token' => $accessToken,
-       ]);
+       ],200);
 
               
     }
@@ -63,7 +63,7 @@ class AuthController extends Controller
     {
         $request->user()->token()->revoke();
 
-        return response()->json([
+        return response([
             'message' => 'Successfully logged out'
         ], 200);
     }

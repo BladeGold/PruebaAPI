@@ -19,7 +19,7 @@ class CreateContratosCorporativosTable extends Migration
             $table->dateTime('D_FechaFin');
             $table->string('S_URLContrato', 255)->nullable();
 
-            $table->foreignId('tw_coporativos_id')
+            $table->foreignId('tw_corporativos_id')
                     ->constrained('tw_corporativos')
                     ->OnDelete('cascade');
         });

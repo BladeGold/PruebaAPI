@@ -13,7 +13,7 @@ class CreateEmpresasCorporativosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tw_empresas_corporativo', function (Blueprint $table) {
+        Schema::create('tw_empresas_corporativos', function (Blueprint $table) {
             $table->id();
             $table->string('S_RazonSocial', 150);
             $table->string('S_RFC', 13);
@@ -44,6 +44,6 @@ class CreateEmpresasCorporativosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tw_empresas_corporativo');
+        Schema::dropIfExists('tw_empresas_corporativos');
     }
 }
