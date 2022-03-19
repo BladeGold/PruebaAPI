@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Empresas;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CorporativosResource extends JsonResource
+class EmpresasResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -13,22 +13,18 @@ class CorporativosResource extends JsonResource
      * @return array
      */
     public function toArray($request)
-    {  
-      
+    {
         return [
             
             'id' => (string) $this->resource->getRouteKey(),
-            'S_NombreCorto' => $this->resource->S_NombreCorto,
-            'S_NombreCompleto' => $this->resource->S_NombreCompleto,
-            'S_LogoUrl' => $this->resource->S_LogoUrl,
+            'S_RazonSocial' => $this->resource->S_RazonSocial,
+            'S_RFC' => $this->resource->S_RFC,
+            'S_Activo' => $this->resource->S_Activo,
             
             'link' => [
-                'self' => route('corporativo.show', $this->resource),
+                'self' => route('empresa.show', $this->resource),
             ]
             
         ];
-        
     }
-
-
 }

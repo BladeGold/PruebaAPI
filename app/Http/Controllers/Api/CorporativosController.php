@@ -1,36 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 use App\Corporativos;
-use Illuminate\Http\Request;
-use App\Http\Resources\CorporativoResource;
-use App\Http\Resources\CorporativosCollection;
-use App\Http\Resources\CorporativoCollection;
+use App\Http\Resources\Corporativos\CorporativoResource;
+use App\Http\Resources\Corporativos\CorporativosCollection;
+
 
 use Validator;
 
 class CorporativosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $corporativos = Corporativos::paginate(2);
-
+        if($corporativos->count() < 1){
+            return response()->json(['message' => 'No Content'], 204);
+        }
+        
         return CorporativosCollection::make($corporativos);
            
     }
+    
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         
@@ -60,18 +55,11 @@ class CorporativosController extends Controller
         return response([
             'corporativo' => CorporativoResource::make($corporativo),
             'message' => 'created Successfully'
-        ], 201);
-        
+        ], 201);       
 
-        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Corporativos  $corporativos
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($corporativo)
     {        
       
@@ -82,16 +70,9 @@ class CorporativosController extends Controller
         $corporativo->tw_documentos;
 
         
-        return CorporativoCollection::make($corporativo);
+        return CorporativoResource::make($corporativo);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Corporativos  $corporativos
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Corporativos $corporativo)
     {
         $corporativo->update($request->all());
@@ -101,12 +82,6 @@ class CorporativosController extends Controller
         ], 202);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Corporativos  $corporativos
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Corporativos $corporativo)
     {
         $corporativo->delete();
@@ -116,4 +91,6 @@ class CorporativosController extends Controller
             'message' => 'Delete Successfully'
         ], 202);
     }
+
+
 }

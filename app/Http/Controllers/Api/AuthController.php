@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -45,8 +46,8 @@ class AuthController extends Controller
 
        if(!Auth::attempt($credentials)){
            return response([
-               'message' => "Unprocessable Entity"
-           ], 422);
+               'message' => "The user credentials were incorrect."
+           ], 400);
        }
 
        $accessToken = Auth::user()->createToken('authToken')->accessToken;
@@ -61,6 +62,8 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        
+
         $request->user()->token()->revoke();
 
         return response([

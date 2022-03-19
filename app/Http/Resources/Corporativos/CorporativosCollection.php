@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Corporativos;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+
 
 class CorporativosCollection extends ResourceCollection
 {
@@ -13,16 +14,9 @@ class CorporativosCollection extends ResourceCollection
      * @return array
      */
     public function toArray($request)
-    
     {
         return [
             'corporativos' =>CorporativosResource::collection($this->collection),
         ];
-        
-       
     }
-
-    
-    
 }
-
