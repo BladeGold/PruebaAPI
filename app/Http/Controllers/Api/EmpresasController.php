@@ -57,7 +57,7 @@ class EmpresasController extends Controller
             ], 400);
         }
         $empresa = Empresas::create($request->all());
-        return response([
+        return response()->json([
             'empresa' => EmpresaResource::make($empresa),
             'message' => 'created Successfully'
         ], 201);      
@@ -76,7 +76,7 @@ class EmpresasController extends Controller
     public function update(Request $request, Empresas $empresa)
     {
         $empresa->update($request->all());
-        return response([
+        return response()->json([
             'empresa' => EmpresaResource::make($empresa),
             'message' => 'Update Successfully'
         ], 202);
@@ -86,7 +86,7 @@ class EmpresasController extends Controller
     {
         $empresa->delete();
 
-        return response([
+        return response()->json([
             
             'message' => 'Delete Successfully'
         ], 202);

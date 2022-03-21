@@ -52,7 +52,7 @@ class CorporativosController extends Controller
             ], 400);
         }
         $corporativo = Corporativos::create($request->all());
-        return response([
+        return response()->json([
             'corporativo' => CorporativoResource::make($corporativo),
             'message' => 'created Successfully'
         ], 201);       
@@ -76,7 +76,7 @@ class CorporativosController extends Controller
     public function update(Request $request, Corporativos $corporativo)
     {
         $corporativo->update($request->all());
-        return response([
+        return response()->json([
             'corporativo' => CorporativoResource::make($corporativo),
             'message' => 'Update Successfully'
         ], 202);
@@ -86,7 +86,7 @@ class CorporativosController extends Controller
     {
         $corporativo->delete();
 
-        return response([
+        return response()->json([
             
             'message' => 'Delete Successfully'
         ], 202);

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ContratosCorporativos extends Model
 {
     protected $table = 'tw_contratos_corporativos';
+    public $timestamps = false;
 
     protected $guarded = [  ];
 

@@ -45,14 +45,14 @@ class AuthController extends Controller
 
 
        if(!Auth::attempt($credentials)){
-           return response([
+           return response()->json([
                'message' => "The user credentials were incorrect."
            ], 400);
        }
 
        $accessToken = Auth::user()->createToken('authToken')->accessToken;
 
-       return response([
+       return response()->json([
            'user' => Auth::user(),
            'access_token' => $accessToken,
        ],200);
@@ -66,7 +66,7 @@ class AuthController extends Controller
 
         $request->user()->token()->revoke();
 
-        return response([
+        return response()->json([
             'message' => 'Successfully logged out'
         ], 200);
     }

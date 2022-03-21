@@ -10,6 +10,7 @@ class Corporativos extends Model
     use SoftDeletes;
 
     protected $table = 'tw_corporativos';
+    protected $primaryKey = 'id';
 
     protected $guarded = [  ];
 

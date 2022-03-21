@@ -9,10 +9,11 @@ class ContactosCorporativos extends Model
     protected $table = 'tw_contactos_corporativos';
 
     protected $guarded = [  ];
+    public $timestamps = false;
 
     //Relaciones
     
-    public function Corporativo(){
+    public function tw_corporativo(){
 
         return $this->belongsTo(Corporativos::class);
     }
